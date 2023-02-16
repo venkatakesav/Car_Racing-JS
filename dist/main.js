@@ -56292,9 +56292,14 @@ __webpack_require__.r(__webpack_exports__);
 
 let Clock = new three__WEBPACK_IMPORTED_MODULE_0__.Clock();
 
+let isPOV = 0;
+
 let camera, controls, scene, renderer;
 camera = new three__WEBPACK_IMPORTED_MODULE_0__.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000000);
-camera.position.set(0, 100, 300);
+camera.position.set(0, 50, 150);
+
+let speed = 0;
+let rotation_ticks = 0;
 
 const loader = new three_addons_loaders_GLTFLoader_js__WEBPACK_IMPORTED_MODULE_1__.GLTFLoader();
 let car
@@ -56305,8 +56310,9 @@ loader.load(
 	function (gltf) {
 		console.log(gltf);
 		car = gltf.scene;
-		car.scale.set(0.3, 0.3, 0.3)
+		car.scale.set(0.1, 0.1, 0.1)
 		car.position.set(0, 0, 0)
+		car.rotation.y = 3.14
 		car.attach(camera)
 		scene.add(car);
 	},
@@ -56390,13 +56396,6 @@ for (let i = 0; i < 10; i++) {
 	)
 }
 
-// movement - please calibrate these values
-var xSpeed = 30;
-var ySpeed = 50;
-
-let rotation = 0;
-let camrotation = 0;
-
 init();
 animate();
 
@@ -56419,22 +56418,35 @@ function init() {
 	function onDocumentKeyDown(event) {
 		var keyCode = event.which;
 		if (keyCode == 87) {
-			car.translateZ(-ySpeed)
+			if (speed < 2.5) {
+				speed += 0.04;
+			}
 		} else if (keyCode == 83) {
-			car.translateZ(ySpeed)
+			if (speed > -2.5) {
+				speed -= 0.04;
+			}
 		}
 		else if (keyCode == 68) {
-			car.rotation.y -= 0.1;
-			car.translateZ(-xSpeed * Math.cos(car.rotation.y));
-			car.translateX(-xSpeed.Math.sin(car.rotation.y));
+			rotation_ticks -= 5;
 		}
 		else if (keyCode == 65) {
-			car.rotation.y += 0.1;
-			car.translateZ(xSpeed.Math.cos(car.rotation.y));
-			car.translateX(xSpeed.Math.sin(car.rotation.y));
+			rotation_ticks += 5;
 		}
 		else if (keyCode == 32) {
-			car.position.set(0, 0, 0);
+			console.log(camera.position);
+			if (isPOV == 0) {
+				camera.position.x -= 0;
+				camera.position.y -= 450;
+				camera.position.z += 1800;
+				console.log(camera.position);
+				isPOV = 1;
+			} else {
+				camera.position.x -= 0;
+				camera.position.y += 450;
+				camera.position.z -= 1800;
+				console.log(camera.position);
+				isPOV = 0;
+			}
 		}
 	};
 
@@ -56458,6 +56470,19 @@ function init() {
 
 }
 
+function turn_car() {
+	if (rotation_ticks > 2) {
+		rotation_ticks -= 2;
+		console.log(rotation_ticks);
+		car.rotation.y += 0.01;
+	}
+	if (rotation_ticks < -2) {
+		rotation_ticks += 2;
+		console.log(rotation_ticks);
+		car.rotation.y -= 0.01;
+	}
+}
+
 function onWindowResize() {
 
 	camera.aspect = window.innerWidth / window.innerHeight;
@@ -56472,7 +56497,10 @@ function animate() {
 	requestAnimationFrame(animate);
 
 	// controls.update(); // only required if controls.enableDamping = true, or if controls.autoRotate = true
-	console.log(Clock.elapsedTime)
+	// console.log(Clock.elapsedTime)
+	car.translateZ(0.4);
+	car.translateZ(speed);
+	turn_car();
 	render();
 }
 
