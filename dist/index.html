@@ -1,14 +1,46 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>three.js tutorial</title>
-		<style>
-			body { margin: 0; }
-		</style>
-	</head>
-	<body>
-		<!-- <script src="js/three.js"></script>
+
+<head>
+	<title>three.js tutorial</title>
+	<script>
+		function LoadGame() {
+			var script = document.createElement("script");
+			script.type = "text/javascript";
+			script.src = "http://localhost:8080/dist/main.js";
+			document.getElementsByTagName("head")[0].appendChild(script);
+
+			document.querySelector(".button").remove();
+			// document.getElementById("graphic").remove();
+		}
+	</script>
+	<style>
+		body {
+			margin: 0;
+			background-image: url("http://localhost:8080/src/assets/StartScreen.jpg");
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: 100% 100%;
+		}
+
+		.button {
+			box-align: center;
+			width: 500px;
+			height: 40px;
+			background-color: rgb(241, 146, 14);
+			color: black;
+			border-radius: 10px;
+			position: absolute;
+			top: 13%;
+			left: 30%;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- <script src="js/three.js"></script>
 		<script src="js/cube.js"></script> -->
-	</body>
-	<script src="http://localhost:8080/dist/main.js"></script>
+	<button class="button" onclick="LoadGame()">START SCREEN</button>
+</body>
+<!-- <script src="http://localhost:8080/dist/main.js"></script> -->
 </html>
