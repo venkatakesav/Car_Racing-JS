@@ -7,6 +7,7 @@ let Clock = new THREE.Clock();
 let isPOV = 0;
 
 let camera, controls, scene, renderer;
+let can;
 let bird_eye_renderer;
 let bird_eye;
 
@@ -38,6 +39,27 @@ loader.load(
 		car.attach(camera)
 		car.attach(bird_eye)
 		scene.add(car);
+	},
+	// called while loading is progressing
+	function (xhr) {
+		console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+	},
+	// called when loading has errors
+	function (error) {
+		console.log('An error happened');
+	}
+);
+
+loader.load(
+	// resource URL
+	'../src/Fuel_Can/scene.gltf',
+	// called when the resource is loaded
+	function (gltf) {
+		console.log(gltf);
+		can = gltf.scene;
+		can.scale.set(30, 30, 30)
+		can.position.set(60.873041091420454, 0, -1907.8854737263919)
+		scene.add(can);
 	},
 	// called while loading is progressing
 	function (xhr) {
@@ -179,6 +201,9 @@ function init() {
 				isPOV = 0;
 			}
 		}
+		if(keyCode == 69){[
+			console.log(car.position.x, car.position.y, car.position.z)
+		]}
 	};
 
 
@@ -204,12 +229,12 @@ function init() {
 function turn_car() {
 	if (rotation_ticks > 2) {
 		rotation_ticks -= 2;
-		console.log(rotation_ticks);
+		// console.log(rotation_ticks); 
 		car.rotation.y += 0.01;
 	}
 	if (rotation_ticks < -2) {
 		rotation_ticks += 2;
-		console.log(rotation_ticks);
+		// console.log(rotation_ticks);
 		car.rotation.y -= 0.01;
 	}
 }
@@ -231,6 +256,8 @@ function animate() {
 	// console.log(Clock.elapsedTime)
 	car.translateZ(0.4);
 	car.translateZ(speed);
+
+	can.rotation.y += 0.01
 	turn_car();
 	render();
 }
