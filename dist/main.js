@@ -56966,6 +56966,17 @@ let FuelTank = [
 	[-21.076782813029208, 0, 233.8242833247367]
 ];
 
+let selectedCans = [];
+for (let i = 0; i < 20; i++) {
+	/*Generate a Random 20 Cans out of 58 */
+	let random = Math.floor(Math.random() * 58);
+	if (!selectedCans.includes(random)) {
+		selectedCans.push(random);
+	}
+}
+
+console.log(selectedCans)
+
 const aspect = window.innerWidth / window.innerHeight;
 bird_eye = new three__WEBPACK_IMPORTED_MODULE_0__.OrthographicCamera(frustumSize * aspect / - 8, frustumSize * aspect / 8, frustumSize / 8, frustumSize / - 8, 1, 1000);
 bird_eye.position.set(0, 200, 0);
@@ -57008,17 +57019,12 @@ function loadFuel() {
 		// called when the resource is loaded
 		function (gltf) {
 			gltf.scene.scale.set(30, 30, 30)
-
 			for (let i = 0; i < 58; i++) {
-				FuelModel[i] = three_addons_utils_SkeletonUtils_js__WEBPACK_IMPORTED_MODULE_2__.clone(gltf.scene)
-			}
-
-			for (let i = 0; i < 58; i++) {
-				FuelModel[i].position.set(FuelTank[i][0], FuelTank[i][1], FuelTank[i][2])
-			}
-
-			for (let i = 0; i < 58; i++) {
-				scene.add(FuelModel[i])
+				if (selectedCans.includes(i)) {
+					FuelModel[i] = three_addons_utils_SkeletonUtils_js__WEBPACK_IMPORTED_MODULE_2__.clone(gltf.scene)
+					FuelModel[i].position.set(FuelTank[i][0], FuelTank[i][1], FuelTank[i][2])
+					scene.add(FuelModel[i])
+				}
 			}
 		});
 }
