@@ -7,8 +7,18 @@ let Clock = new THREE.Clock();
 let isPOV = 0;
 
 let camera, controls, scene, renderer;
+let bird_eye_renderer;
+let bird_eye;
+
+const frustumSize = 5000;
+
 camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000000);
 camera.position.set(0, 50, 150);
+
+const aspect = window.innerWidth / window.innerHeight;
+bird_eye = new THREE.OrthographicCamera( frustumSize * aspect / - 8, frustumSize * aspect / 8, frustumSize / 8, frustumSize / - 8, 1, 1000 );
+bird_eye.position.set(0, 200, 0);
+bird_eye.zoom = 6
 
 let speed = 0;
 let rotation_ticks = 0;
@@ -26,6 +36,7 @@ loader.load(
 		car.position.set(0, 0, 0)
 		car.rotation.y = 3.14
 		car.attach(camera)
+		car.attach(bird_eye)
 		scene.add(car);
 	},
 	// called while loading is progressing
@@ -120,9 +131,17 @@ function init() {
 	renderer = new THREE.WebGLRenderer({ antialias: true });
 	renderer.setPixelRatio(window.devicePixelRatio);
 	renderer.setSize(window.innerWidth, window.innerHeight);
-	document.body.appendChild(renderer.domElement);
+	document.querySelector(".Main").appendChild(renderer.domElement);
 
-	// camera.lookAt(car.position);
+	bird_eye_renderer = new THREE.WebGLRenderer({ antialias: true });
+	bird_eye_renderer.setPixelRatio(window.devicePixelRatio);
+	bird_eye_renderer.setSize(300, 200);
+	document.querySelector(".Sub").appendChild(bird_eye_renderer.domElement);
+	// document.querySelector("#bird_eye").appendChild(bird_eye_renderer.domElement);
+
+
+	// bird_eye.lookAt(car.position.x, car.position.y, car.positon.z);
+	bird_eye.lookAt(0, 0, 0)
 
 	scene.add(new THREE.AxesHelper(500000000));
 
@@ -201,7 +220,7 @@ function onWindowResize() {
 	camera.updateProjectionMatrix();
 
 	renderer.setSize(window.innerWidth, window.innerHeight);
-
+	bird_eye_renderer.setSize(window.innerWidth/2, window.innerHeight/2);
 }
 
 function animate() {
@@ -217,7 +236,6 @@ function animate() {
 }
 
 function render() {
-
 	renderer.render(scene, camera);
-
+	bird_eye_renderer.render(scene, bird_eye);
 }

@@ -3,6 +3,7 @@
 
 <head>
 	<title>three.js tutorial</title>
+	<!-- <canvas id="bird_eye" width="300" height="200" style="border:1px solid #000000;"></canvas> -->
 	<script>
 		function LoadGame() {
 			var script = document.createElement("script");
@@ -34,13 +35,26 @@
 			top: 13%;
 			left: 30%;
 		}
+
+		.Sub {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			bottom: 0;
+			right: 0;
+		}
 	</style>
 </head>
 
 <body>
-	<!-- <script src="js/three.js"></script>
-		<script src="js/cube.js"></script> -->
+	<div class="Main">
+		<div class="Sub">
+			<canvas id="bird_eye" width="300" height="200" bottom="0" right="0" --
+			 style="border:1px solid #000000;"></canvas>
+		</div>
+	</div>
 	<button class="button" onclick="LoadGame()">START SCREEN</button>
 </body>
 <!-- <script src="http://localhost:8080/dist/main.js"></script> -->
+
 </html>
