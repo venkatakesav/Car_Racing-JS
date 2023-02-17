@@ -56219,6 +56219,604 @@ function toCreasedNormals( geometry, creaseAngle = Math.PI / 3 /* 60 degrees */ 
 
 
 
+/***/ }),
+
+/***/ "./node_modules/three/examples/jsm/utils/SkeletonUtils.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/three/examples/jsm/utils/SkeletonUtils.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "clone": () => (/* binding */ clone),
+/* harmony export */   "findBoneTrackData": () => (/* binding */ findBoneTrackData),
+/* harmony export */   "getBoneByName": () => (/* binding */ getBoneByName),
+/* harmony export */   "getBones": () => (/* binding */ getBones),
+/* harmony export */   "getEqualsBonesNames": () => (/* binding */ getEqualsBonesNames),
+/* harmony export */   "getHelperFromSkeleton": () => (/* binding */ getHelperFromSkeleton),
+/* harmony export */   "getNearestBone": () => (/* binding */ getNearestBone),
+/* harmony export */   "getSkeletonOffsets": () => (/* binding */ getSkeletonOffsets),
+/* harmony export */   "renameBones": () => (/* binding */ renameBones),
+/* harmony export */   "retarget": () => (/* binding */ retarget),
+/* harmony export */   "retargetClip": () => (/* binding */ retargetClip)
+/* harmony export */ });
+/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! three */ "./node_modules/three/build/three.module.js");
+
+
+
+function retarget( target, source, options = {} ) {
+
+	const pos = new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(),
+		quat = new three__WEBPACK_IMPORTED_MODULE_0__.Quaternion(),
+		scale = new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(),
+		bindBoneMatrix = new three__WEBPACK_IMPORTED_MODULE_0__.Matrix4(),
+		relativeMatrix = new three__WEBPACK_IMPORTED_MODULE_0__.Matrix4(),
+		globalMatrix = new three__WEBPACK_IMPORTED_MODULE_0__.Matrix4();
+
+	options.preserveMatrix = options.preserveMatrix !== undefined ? options.preserveMatrix : true;
+	options.preservePosition = options.preservePosition !== undefined ? options.preservePosition : true;
+	options.preserveHipPosition = options.preserveHipPosition !== undefined ? options.preserveHipPosition : false;
+	options.useTargetMatrix = options.useTargetMatrix !== undefined ? options.useTargetMatrix : false;
+	options.hip = options.hip !== undefined ? options.hip : 'hip';
+	options.names = options.names || {};
+
+	const sourceBones = source.isObject3D ? source.skeleton.bones : getBones( source ),
+		bones = target.isObject3D ? target.skeleton.bones : getBones( target );
+
+	let bindBones,
+		bone, name, boneTo,
+		bonesPosition;
+
+	// reset bones
+
+	if ( target.isObject3D ) {
+
+		target.skeleton.pose();
+
+	} else {
+
+		options.useTargetMatrix = true;
+		options.preserveMatrix = false;
+
+	}
+
+	if ( options.preservePosition ) {
+
+		bonesPosition = [];
+
+		for ( let i = 0; i < bones.length; i ++ ) {
+
+			bonesPosition.push( bones[ i ].position.clone() );
+
+		}
+
+	}
+
+	if ( options.preserveMatrix ) {
+
+		// reset matrix
+
+		target.updateMatrixWorld();
+
+		target.matrixWorld.identity();
+
+		// reset children matrix
+
+		for ( let i = 0; i < target.children.length; ++ i ) {
+
+			target.children[ i ].updateMatrixWorld( true );
+
+		}
+
+	}
+
+	if ( options.offsets ) {
+
+		bindBones = [];
+
+		for ( let i = 0; i < bones.length; ++ i ) {
+
+			bone = bones[ i ];
+			name = options.names[ bone.name ] || bone.name;
+
+			if ( options.offsets[ name ] ) {
+
+				bone.matrix.multiply( options.offsets[ name ] );
+
+				bone.matrix.decompose( bone.position, bone.quaternion, bone.scale );
+
+				bone.updateMatrixWorld();
+
+			}
+
+			bindBones.push( bone.matrixWorld.clone() );
+
+		}
+
+	}
+
+	for ( let i = 0; i < bones.length; ++ i ) {
+
+		bone = bones[ i ];
+		name = options.names[ bone.name ] || bone.name;
+
+		boneTo = getBoneByName( name, sourceBones );
+
+		globalMatrix.copy( bone.matrixWorld );
+
+		if ( boneTo ) {
+
+			boneTo.updateMatrixWorld();
+
+			if ( options.useTargetMatrix ) {
+
+				relativeMatrix.copy( boneTo.matrixWorld );
+
+			} else {
+
+				relativeMatrix.copy( target.matrixWorld ).invert();
+				relativeMatrix.multiply( boneTo.matrixWorld );
+
+			}
+
+			// ignore scale to extract rotation
+
+			scale.setFromMatrixScale( relativeMatrix );
+			relativeMatrix.scale( scale.set( 1 / scale.x, 1 / scale.y, 1 / scale.z ) );
+
+			// apply to global matrix
+
+			globalMatrix.makeRotationFromQuaternion( quat.setFromRotationMatrix( relativeMatrix ) );
+
+			if ( target.isObject3D ) {
+
+				const boneIndex = bones.indexOf( bone ),
+					wBindMatrix = bindBones ? bindBones[ boneIndex ] : bindBoneMatrix.copy( target.skeleton.boneInverses[ boneIndex ] ).invert();
+
+				globalMatrix.multiply( wBindMatrix );
+
+			}
+
+			globalMatrix.copyPosition( relativeMatrix );
+
+		}
+
+		if ( bone.parent && bone.parent.isBone ) {
+
+			bone.matrix.copy( bone.parent.matrixWorld ).invert();
+			bone.matrix.multiply( globalMatrix );
+
+		} else {
+
+			bone.matrix.copy( globalMatrix );
+
+		}
+
+		if ( options.preserveHipPosition && name === options.hip ) {
+
+			bone.matrix.setPosition( pos.set( 0, bone.position.y, 0 ) );
+
+		}
+
+		bone.matrix.decompose( bone.position, bone.quaternion, bone.scale );
+
+		bone.updateMatrixWorld();
+
+	}
+
+	if ( options.preservePosition ) {
+
+		for ( let i = 0; i < bones.length; ++ i ) {
+
+			bone = bones[ i ];
+			name = options.names[ bone.name ] || bone.name;
+
+			if ( name !== options.hip ) {
+
+				bone.position.copy( bonesPosition[ i ] );
+
+			}
+
+		}
+
+	}
+
+	if ( options.preserveMatrix ) {
+
+		// restore matrix
+
+		target.updateMatrixWorld( true );
+
+	}
+
+}
+
+function retargetClip( target, source, clip, options = {} ) {
+
+	options.useFirstFramePosition = options.useFirstFramePosition !== undefined ? options.useFirstFramePosition : false;
+	options.fps = options.fps !== undefined ? options.fps : 30;
+	options.names = options.names || [];
+
+	if ( ! source.isObject3D ) {
+
+		source = getHelperFromSkeleton( source );
+
+	}
+
+	const numFrames = Math.round( clip.duration * ( options.fps / 1000 ) * 1000 ),
+		delta = 1 / options.fps,
+		convertedTracks = [],
+		mixer = new three__WEBPACK_IMPORTED_MODULE_0__.AnimationMixer( source ),
+		bones = getBones( target.skeleton ),
+		boneDatas = [];
+	let positionOffset,
+		bone, boneTo, boneData,
+		name;
+
+	mixer.clipAction( clip ).play();
+	mixer.update( 0 );
+
+	source.updateMatrixWorld();
+
+	for ( let i = 0; i < numFrames; ++ i ) {
+
+		const time = i * delta;
+
+		retarget( target, source, options );
+
+		for ( let j = 0; j < bones.length; ++ j ) {
+
+			name = options.names[ bones[ j ].name ] || bones[ j ].name;
+
+			boneTo = getBoneByName( name, source.skeleton );
+
+			if ( boneTo ) {
+
+				bone = bones[ j ];
+				boneData = boneDatas[ j ] = boneDatas[ j ] || { bone: bone };
+
+				if ( options.hip === name ) {
+
+					if ( ! boneData.pos ) {
+
+						boneData.pos = {
+							times: new Float32Array( numFrames ),
+							values: new Float32Array( numFrames * 3 )
+						};
+
+					}
+
+					if ( options.useFirstFramePosition ) {
+
+						if ( i === 0 ) {
+
+							positionOffset = bone.position.clone();
+
+						}
+
+						bone.position.sub( positionOffset );
+
+					}
+
+					boneData.pos.times[ i ] = time;
+
+					bone.position.toArray( boneData.pos.values, i * 3 );
+
+				}
+
+				if ( ! boneData.quat ) {
+
+					boneData.quat = {
+						times: new Float32Array( numFrames ),
+						values: new Float32Array( numFrames * 4 )
+					};
+
+				}
+
+				boneData.quat.times[ i ] = time;
+
+				bone.quaternion.toArray( boneData.quat.values, i * 4 );
+
+			}
+
+		}
+
+		mixer.update( delta );
+
+		source.updateMatrixWorld();
+
+	}
+
+	for ( let i = 0; i < boneDatas.length; ++ i ) {
+
+		boneData = boneDatas[ i ];
+
+		if ( boneData ) {
+
+			if ( boneData.pos ) {
+
+				convertedTracks.push( new three__WEBPACK_IMPORTED_MODULE_0__.VectorKeyframeTrack(
+					'.bones[' + boneData.bone.name + '].position',
+					boneData.pos.times,
+					boneData.pos.values
+				) );
+
+			}
+
+			convertedTracks.push( new three__WEBPACK_IMPORTED_MODULE_0__.QuaternionKeyframeTrack(
+				'.bones[' + boneData.bone.name + '].quaternion',
+				boneData.quat.times,
+				boneData.quat.values
+			) );
+
+		}
+
+	}
+
+	mixer.uncacheAction( clip );
+
+	return new three__WEBPACK_IMPORTED_MODULE_0__.AnimationClip( clip.name, - 1, convertedTracks );
+
+}
+
+function getHelperFromSkeleton( skeleton ) {
+
+	const source = new three__WEBPACK_IMPORTED_MODULE_0__.SkeletonHelper( skeleton.bones[ 0 ] );
+	source.skeleton = skeleton;
+
+	return source;
+
+}
+
+function getSkeletonOffsets( target, source, options = {} ) {
+
+	const targetParentPos = new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(),
+		targetPos = new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(),
+		sourceParentPos = new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(),
+		sourcePos = new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(),
+		targetDir = new three__WEBPACK_IMPORTED_MODULE_0__.Vector2(),
+		sourceDir = new three__WEBPACK_IMPORTED_MODULE_0__.Vector2();
+
+	options.hip = options.hip !== undefined ? options.hip : 'hip';
+	options.names = options.names || {};
+
+	if ( ! source.isObject3D ) {
+
+		source = getHelperFromSkeleton( source );
+
+	}
+
+	const nameKeys = Object.keys( options.names ),
+		nameValues = Object.values( options.names ),
+		sourceBones = source.isObject3D ? source.skeleton.bones : getBones( source ),
+		bones = target.isObject3D ? target.skeleton.bones : getBones( target ),
+		offsets = [];
+
+	let bone, boneTo,
+		name, i;
+
+	target.skeleton.pose();
+
+	for ( i = 0; i < bones.length; ++ i ) {
+
+		bone = bones[ i ];
+		name = options.names[ bone.name ] || bone.name;
+
+		boneTo = getBoneByName( name, sourceBones );
+
+		if ( boneTo && name !== options.hip ) {
+
+			const boneParent = getNearestBone( bone.parent, nameKeys ),
+				boneToParent = getNearestBone( boneTo.parent, nameValues );
+
+			boneParent.updateMatrixWorld();
+			boneToParent.updateMatrixWorld();
+
+			targetParentPos.setFromMatrixPosition( boneParent.matrixWorld );
+			targetPos.setFromMatrixPosition( bone.matrixWorld );
+
+			sourceParentPos.setFromMatrixPosition( boneToParent.matrixWorld );
+			sourcePos.setFromMatrixPosition( boneTo.matrixWorld );
+
+			targetDir.subVectors(
+				new three__WEBPACK_IMPORTED_MODULE_0__.Vector2( targetPos.x, targetPos.y ),
+				new three__WEBPACK_IMPORTED_MODULE_0__.Vector2( targetParentPos.x, targetParentPos.y )
+			).normalize();
+
+			sourceDir.subVectors(
+				new three__WEBPACK_IMPORTED_MODULE_0__.Vector2( sourcePos.x, sourcePos.y ),
+				new three__WEBPACK_IMPORTED_MODULE_0__.Vector2( sourceParentPos.x, sourceParentPos.y )
+			).normalize();
+
+			const laterialAngle = targetDir.angle() - sourceDir.angle();
+
+			const offset = new three__WEBPACK_IMPORTED_MODULE_0__.Matrix4().makeRotationFromEuler(
+				new three__WEBPACK_IMPORTED_MODULE_0__.Euler(
+					0,
+					0,
+					laterialAngle
+				)
+			);
+
+			bone.matrix.multiply( offset );
+
+			bone.matrix.decompose( bone.position, bone.quaternion, bone.scale );
+
+			bone.updateMatrixWorld();
+
+			offsets[ name ] = offset;
+
+		}
+
+	}
+
+	return offsets;
+
+}
+
+function renameBones( skeleton, names ) {
+
+	const bones = getBones( skeleton );
+
+	for ( let i = 0; i < bones.length; ++ i ) {
+
+		const bone = bones[ i ];
+
+		if ( names[ bone.name ] ) {
+
+			bone.name = names[ bone.name ];
+
+		}
+
+	}
+
+	return this;
+
+}
+
+function getBones( skeleton ) {
+
+	return Array.isArray( skeleton ) ? skeleton : skeleton.bones;
+
+}
+
+function getBoneByName( name, skeleton ) {
+
+	for ( let i = 0, bones = getBones( skeleton ); i < bones.length; i ++ ) {
+
+		if ( name === bones[ i ].name )
+
+			return bones[ i ];
+
+	}
+
+}
+
+function getNearestBone( bone, names ) {
+
+	while ( bone.isBone ) {
+
+		if ( names.indexOf( bone.name ) !== - 1 ) {
+
+			return bone;
+
+		}
+
+		bone = bone.parent;
+
+	}
+
+}
+
+function findBoneTrackData( name, tracks ) {
+
+	const regexp = /\[(.*)\]\.(.*)/,
+		result = { name: name };
+
+	for ( let i = 0; i < tracks.length; ++ i ) {
+
+		// 1 is track name
+		// 2 is track type
+		const trackData = regexp.exec( tracks[ i ].name );
+
+		if ( trackData && name === trackData[ 1 ] ) {
+
+			result[ trackData[ 2 ] ] = i;
+
+		}
+
+	}
+
+	return result;
+
+}
+
+function getEqualsBonesNames( skeleton, targetSkeleton ) {
+
+	const sourceBones = getBones( skeleton ),
+		targetBones = getBones( targetSkeleton ),
+		bones = [];
+
+	search : for ( let i = 0; i < sourceBones.length; i ++ ) {
+
+		const boneName = sourceBones[ i ].name;
+
+		for ( let j = 0; j < targetBones.length; j ++ ) {
+
+			if ( boneName === targetBones[ j ].name ) {
+
+				bones.push( boneName );
+
+				continue search;
+
+			}
+
+		}
+
+	}
+
+	return bones;
+
+}
+
+function clone( source ) {
+
+	const sourceLookup = new Map();
+	const cloneLookup = new Map();
+
+	const clone = source.clone();
+
+	parallelTraverse( source, clone, function ( sourceNode, clonedNode ) {
+
+		sourceLookup.set( clonedNode, sourceNode );
+		cloneLookup.set( sourceNode, clonedNode );
+
+	} );
+
+	clone.traverse( function ( node ) {
+
+		if ( ! node.isSkinnedMesh ) return;
+
+		const clonedMesh = node;
+		const sourceMesh = sourceLookup.get( node );
+		const sourceBones = sourceMesh.skeleton.bones;
+
+		clonedMesh.skeleton = sourceMesh.skeleton.clone();
+		clonedMesh.bindMatrix.copy( sourceMesh.bindMatrix );
+
+		clonedMesh.skeleton.bones = sourceBones.map( function ( bone ) {
+
+			return cloneLookup.get( bone );
+
+		} );
+
+		clonedMesh.bind( clonedMesh.skeleton, clonedMesh.bindMatrix );
+
+	} );
+
+	return clone;
+
+}
+
+
+
+
+function parallelTraverse( a, b, callback ) {
+
+	callback( a, b );
+
+	for ( let i = 0; i < a.children.length; i ++ ) {
+
+		parallelTraverse( a.children[ i ], b.children[ i ], callback );
+
+	}
+
+}
+
+
+
+
 /***/ })
 
 /******/ 	});
@@ -56286,6 +56884,8 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var three__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! three */ "./node_modules/three/build/three.module.js");
 /* harmony import */ var three_addons_loaders_GLTFLoader_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! three/addons/loaders/GLTFLoader.js */ "./node_modules/three/examples/jsm/loaders/GLTFLoader.js");
+/* harmony import */ var three_addons_utils_SkeletonUtils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! three/addons/utils/SkeletonUtils.js */ "./node_modules/three/examples/jsm/utils/SkeletonUtils.js");
+
 
 
 
@@ -56304,8 +56904,70 @@ const frustumSize = 5000;
 camera = new three__WEBPACK_IMPORTED_MODULE_0__.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000000);
 camera.position.set(0, 50, 150);
 
+
+let FuelTank = [
+	[60.873041091420454, 0, - 1907.8854737263919],
+	[-367.24245420600977, 0, -2479.427586682133],
+	[48.04237154649154, 0, -3960.8580737403377],
+	[68.4901351607058, 0, -3977.366476545493],
+	[1501.9237979593831, 0, -4371.767757269876],
+	[2318.7470423741443, 0, -3421.260484062915],
+	[2153.0845236944206, 0, -1981.6720136944612],
+	[2101.050292229666, 0, -1579.1611450185273],
+	[2063.647410184328, 0, -1268.9680148323496],
+	[1963.2397168090085, 0, -857.6213133604109],
+	[1307.8585129482951, 0, -836.6381164751313],
+	[1451.344748425768, 0, -1400.8169789500128],
+	[1485.557223662956, 0, -1896.250291175657],
+	[1550.2080834626845, 0, -2370.038995919365],
+	[1635.3288599596915, 0, -2801.1891534655465],
+	[1635.0528922365513, 0, -3162.0292181915484],
+	[1336.843375729829, 0, -3797.833110100884],
+	[1319.5077502231175, 0, -3800.3504442833173],
+	[821.2403684568039, 0, -3710.618852694087],
+	[465.8654293443228, 0, -3315.3978873861224],
+	[470.5252899253826, 0, -3295.4961462722113],
+	[574.672744963673, 0, -2754.863127863875],
+	[766.9382081629524, 0, -2196.372629644826],
+	[711.808196519213, 0, -1412.362670559135],
+	[659.1505824310369, 0, -1074.8880929659792],
+	[624.4885997802527, 0, -820.5794875604718],
+	[613.338998399867, 0, -549.2863048428699],
+	[615.2659910905519, 0, -254.41681820277316],
+	[631.5509464723799, 0, 57.57187650544248],
+	[632.6015158659003, 0, 75.06034996510725],
+	[858.7401092507354, 0, 455.0692034885388],
+	[881.5523125395458, 0, 460.0698588204126],
+	[1279.1985905536067, 0, 574.84953381561],
+	[1582.0719577736868, 0, 909.2211777869965],
+	[1564.7786973182829, 0, 1133.317531391225],
+	[1533.516176616605, 0, 1558.3262355303575],
+	[1516.6083891733049, 0, 1726.8401409618425],
+	[1462.6607464657766, 0, 2030.9658888277224],
+	[1031.2150679447798, 0, 2969.172461146516],
+	[863.765547453525, 0, 2333.9438214829943],
+	[943.1741155300306, 0, 2116.2853768550763],
+	[948.1158087736208, 0, 1938.2756681535645],
+	[941.8924139999368, 0, 1751.5187656045703],
+	[285.6015442909424, 0, 1452.832762033113],
+	[288.25073625262695, 0, 1473.0962338720701],
+	[318.65687945920746, 0, 1567.3384870744173],
+	[341.4017226436124, 0, 1624.284202527968],
+	[368.0585968706278, 0, 2298.712827832877],
+	[361.55682082141976, 0, 2324.175846275433],
+	[50.17305317331068, 0, 2629.578150266865],
+	[-347.9350858583221, 0, 2357.4595696137644],
+	[-297.65514157287043, 0, 1917.250343981672],
+	[-297.31145330050344, 0, 1876.371788743364],
+	[-135.63235307210223, 0, 1338.0949185230038],
+	[-80.47025428693311, 0, 1065.8724968952595],
+	[-80.11108276401012, 0, 835.3502513603692],
+	[-39.1867442118355, 0, 411.0192253702205],
+	[-21.076782813029208, 0, 233.8242833247367]
+];
+
 const aspect = window.innerWidth / window.innerHeight;
-bird_eye = new three__WEBPACK_IMPORTED_MODULE_0__.OrthographicCamera( frustumSize * aspect / - 8, frustumSize * aspect / 8, frustumSize / 8, frustumSize / - 8, 1, 1000 );
+bird_eye = new three__WEBPACK_IMPORTED_MODULE_0__.OrthographicCamera(frustumSize * aspect / - 8, frustumSize * aspect / 8, frustumSize / 8, frustumSize / - 8, 1, 1000);
 bird_eye.position.set(0, 200, 0);
 bird_eye.zoom = 6
 
@@ -56338,27 +57000,28 @@ loader.load(
 	}
 );
 
-loader.load(
-	// resource URL
-	'../src/Fuel_Can/scene.gltf',
-	// called when the resource is loaded
-	function (gltf) {
-		console.log(gltf);
-		can = gltf.scene;
-		can.scale.set(30, 30, 30)
-		can.position.set(60.873041091420454, 0, -1907.8854737263919)
-		scene.add(can);
-	},
-	// called while loading is progressing
-	function (xhr) {
-		console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-	},
-	// called when loading has errors
-	function (error) {
-		console.log('An error happened');
-	}
-);
+let FuelModel = []
+function loadFuel() {
+	loader.load(
+		// resource URL
+		'../src/Fuel_Can/scene.gltf',
+		// called when the resource is loaded
+		function (gltf) {
+			gltf.scene.scale.set(30, 30, 30)
 
+			for (let i = 0; i < 58; i++) {
+				FuelModel[i] = three_addons_utils_SkeletonUtils_js__WEBPACK_IMPORTED_MODULE_2__.clone(gltf.scene)
+			}
+
+			for (let i = 0; i < 58; i++) {
+				FuelModel[i].position.set(FuelTank[i][0], FuelTank[i][1], FuelTank[i][2])
+			}
+
+			for (let i = 0; i < 58; i++) {
+				scene.add(FuelModel[i])
+			}
+		});
+}
 
 let stadium
 loader.load(
@@ -56429,6 +57092,8 @@ for (let i = 0; i < 10; i++) {
 	)
 }
 
+
+loadFuel()
 init();
 animate();
 
@@ -56489,9 +57154,11 @@ function init() {
 				isPOV = 0;
 			}
 		}
-		if(keyCode == 69){[
-			console.log(car.position.x, car.position.y, car.position.z)
-		]}
+		if (keyCode == 69) {
+			[
+				console.log(car.position.x, car.position.y, car.position.z)
+			]
+		}
 	};
 
 
@@ -56533,7 +57200,7 @@ function onWindowResize() {
 	camera.updateProjectionMatrix();
 
 	renderer.setSize(window.innerWidth, window.innerHeight);
-	bird_eye_renderer.setSize(window.innerWidth/2, window.innerHeight/2);
+	bird_eye_renderer.setSize(window.innerWidth / 2, window.innerHeight / 2);
 }
 
 function animate() {
@@ -56545,7 +57212,7 @@ function animate() {
 	car.translateZ(0.4);
 	car.translateZ(speed);
 
-	can.rotation.y += 0.01
+	// can.rotation.y += 0.01
 	turn_car();
 	render();
 }
