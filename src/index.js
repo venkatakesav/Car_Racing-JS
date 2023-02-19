@@ -4,6 +4,11 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import * as SkeletonUtils from 'three/addons/utils/SkeletonUtils.js';
 
 let Clock = new THREE.Clock();
+Clock.start();
+
+let Health = 0; // Health of the player
+let Fuel = 0; // Fuel of the player
+let Score = 0; // Score of the player
 
 let isPOV = 0;
 
@@ -211,8 +216,24 @@ for (let i = 0; i < 10; i++) {
 	)
 }
 
+loadFuel();
 
-loadFuel()
+function checkFuelCollisions(){
+	for (let i = 0; i < 58; i++) {
+		if (selectedCans.includes(i)) {
+			if (car.position.distanceTo(FuelModel[i].position) < 50) {
+				scene.remove(FuelModel[i])
+				selectedCans.splice(selectedCans.indexOf(i), 1)
+				fuel += 100
+				if (fuel > 1000) {
+					fuel = 1000
+				}
+				document.querySelector(".fuel").innerHTML = "Fuel: " + fuel
+			}
+		}
+	}
+}
+
 init();
 animate();
 
@@ -278,6 +299,13 @@ function init() {
 				console.log(car.position.x, car.position.y, car.position.z)
 			]
 		}
+		if (keyCode == 70){
+			console.log("Game Over")
+			document.querySelector(".Main").remove()
+			document.body.style.backgroundImage = "url('http://localhost:8080/src/assets/GameOver.jpg')"
+			document.getElementById("paragraph").remove()
+			// document.getElementsByTagName("body")[0].backgroundImage = "url('http://localhost:8080/src/assets/GameOver.jpg')"
+		}
 	};
 
 
@@ -323,13 +351,17 @@ function onWindowResize() {
 }
 
 function animate() {
-	Clock.start();
 	requestAnimationFrame(animate);
 
 	// controls.update(); // only required if controls.enableDamping = true, or if controls.autoRotate = true
 	// console.log(Clock.elapsedTime)
 	car.translateZ(0.4);
 	car.translateZ(speed);
+
+	checkFuelCollisions()
+
+	document.querySelector("#paragraph").innerHTML = ("Time: " + Math.floor(Clock.getElapsedTime()) + 
+	" Health: " + Health + " Fuel: " + Fuel + " Score: " + Score)
 
 	// can.rotation.y += 0.01
 	turn_car();

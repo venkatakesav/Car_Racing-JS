@@ -13,6 +13,11 @@
 
 			document.querySelector(".button").remove();
 			// document.getElementById("graphic").remove();
+
+			const para = document.createElement("p");
+			para.innerHTML = "This is a paragraph";
+			para.id = "paragraph"
+			document.getElementsByTagName("body")[0].appendChild(para);
 		}
 	</script>
 	<style>
@@ -42,6 +47,14 @@
 			position: absolute;
 			top: 0;
 			left: 0;
+		}
+
+		#paragraph {
+			position: absolute;
+			top: 90%;
+			left: 10%;
+			size: 30px;
+			color: white;
 		}
 	</style>
 </head>
