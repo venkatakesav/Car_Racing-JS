@@ -57016,6 +57016,28 @@ loader.load(
 	}
 );
 
+let Car2;
+loader.load(
+	// resource URL
+	'../src/Car_2/scene.gltf',
+	// called when the resource is loaded
+	function (gltf) {
+		Car2 = gltf.scene;
+		Car2.scale.set(15, 15, 15)
+		Car2.position.set(110.82591138044131, 0, 12.665289114923294)
+		Car2.rotation.y = 3.14
+		scene.add(Car2);
+	},
+	// called while loading is progressing
+	function (xhr) {
+		console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+	},
+	// called when loading has errors
+	function (error) {
+		console.log('An error happened');
+	}
+)
+
 let FuelModel = []
 function loadFuel() {
 	loader.load(
@@ -57105,17 +57127,17 @@ for (let i = 0; i < 10; i++) {
 
 loadFuel();
 
-function checkFuelCollisions(){
+function checkFuelCollisions() {
 	for (let i = 0; i < 58; i++) {
 		if (selectedCans.includes(i)) {
 			if (car.position.distanceTo(FuelModel[i].position) < 50) {
 				scene.remove(FuelModel[i])
 				selectedCans.splice(selectedCans.indexOf(i), 1)
-				fuel += 100
-				if (fuel > 1000) {
+				Fuel += 100
+				if (Fuel > 1000) {
 					fuel = 1000
 				}
-				document.querySelector(".fuel").innerHTML = "Fuel: " + fuel
+				// document.querySelector(".fuel").innerHTML = "Fuel: " + fuel
 			}
 		}
 	}
@@ -57186,7 +57208,7 @@ function init() {
 				console.log(car.position.x, car.position.y, car.position.z)
 			]
 		}
-		if (keyCode == 70){
+		if (keyCode == 70) {
 			console.log("Game Over")
 			document.querySelector(".Main").remove()
 			document.body.style.backgroundImage = "url('http://localhost:8080/src/assets/GameOver.jpg')"
@@ -57247,8 +57269,8 @@ function animate() {
 
 	checkFuelCollisions()
 
-	document.querySelector("#paragraph").innerHTML = ("Time: " + Math.floor(Clock.getElapsedTime()) + 
-	" Health: " + Health + " Fuel: " + Fuel + " Score: " + Score)
+	document.querySelector("#paragraph").innerHTML = ("Time: " + Math.floor(Clock.getElapsedTime()) +
+		" Health: " + Health + " Fuel: " + Fuel + " Score: " + Score)
 
 	// can.rotation.y += 0.01
 	turn_car();
