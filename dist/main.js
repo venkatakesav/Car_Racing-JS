@@ -56893,16 +56893,22 @@ __webpack_require__.r(__webpack_exports__);
 let Clock = new three__WEBPACK_IMPORTED_MODULE_0__.Clock();
 Clock.start();
 
-let line;
+let line, line_1;
 
 let Int_x = 110.82591138044131;
 let Int_z = 12.665289114923294;
 let Fin_x = 90.78880565311941;
 let Fin_z = -1075.7502907046955;
 
+let Int_x_1 = -80.63649693493272;
+let Int_z_1 = 58.242120169284505;
+let Fin_x_1 = -17.196034426365273;
+let Fin_z_1 = -1943.0554419096823;
+
 let flag = 1;
 
 let count = 1;
+let count_1 = 1;
 
 const points = []
 points.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(110.82591138044131, 0, 12.665289114923294))
@@ -56955,10 +56961,107 @@ points.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(317.91933835698313, 0
 points.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(332.61953276497536, 0, 2137.0152625009196))
 points.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(-48.38183464640325, 0, 1529.0462923666703))
 points.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(-39.213402556689346, 0, 1108.7553851542427))
+points.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(110.82591138044131, 0, 12.665289114923294))
+
+
+const points_2 = [];
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(-80.63649693493272, 0, 58.242120169284505))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(-17.196034426365273 , 0, -1943.0554419096823))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(-176.64570651449858 , 0, -2320.371012180431))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(-297.7593489138339 , 0, -2579.700267415291))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(-411.9994596233227 , 0, -2918.7550228031123))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(-416.7451102243694 , 0, -2929.427473335807))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(-483.58696001944713 , 0, -3213.502731413096))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(-353.32760127288293 , 0, -3555.2921578786313))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(-106.96080515348204 , 0, -3790.370292290352))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(168.2515014685185 , 0, -4094.205365707294))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(484.1127126506378 , 0, -4249.99827389554))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(1386.6178626595076 , 0, -4305.347944328539))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(1401.1437581662603 , 0, -4303.878808621091))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(2120.927060623796 , 0, -4224.519747262838))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(2387.2820636474444 , 0, -3837.2064528896776))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(2383.9076064486903 , 0, -3814.097662111016))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(2309.492570452133 , 0, -3365.496710243962))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(2305.989504777388 , 0, -3277.9667809004573))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(2305.7559670657383 , 0, -3272.131452277557))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(2305.6391982099135 , 0, -3269.213787966107))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(2305.405660498264 , 0, -3263.3784593432065))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(2305.172122786614 , 0, -3257.543130720306))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(2304.9385850749645 , 0, -3251.707802097406))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(2304.705047363315 , 0, -3245.8724734745056))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(2304.471509651665 , 0, -3240.0371448516053))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(2246.051879638632 , 0, -2852.5981585549634))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(2175.4805470026095 , 0, -2380.5617214287868))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(2162.618559264997 , 0, -2065.768907473924))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(2111.1962263998007 , 0, -1687.1399995972308))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(2062.3218475837066 , 0, -1349.319391313393))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(2050.141183163967 , 0, -1055.5815925621976))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(2047.52302708303 , 0, -1038.2583232767577))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(1987.8670264347995 , 0, -669.3277395748618))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(1907.488017955869 , 0, -409.9029605978566))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(1552.3633020354848 , 0, -201.1591781080189))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(1299.3721514293532 , 0, -853.4290363096804))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(1384.6026464386996 , 0, -1131.0144925504987))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(1410.7111793849092 , 0, -1403.6385977224738))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(1438.332485330692 , 0, -1942.601993583546))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(1650.7609309744432 , 0, -2804.1888212754984))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(1665.9966347944837 , 0, -3084.901967375079))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(1663.5174006616578 , 0, -3105.1910530645478))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(1592.9498880519407 , 0, -3386.480986296835))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(1372.6527169457588 , 0, -3672.605806433587))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(1054.8164798675668 , 0, -3766.024151566186))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(733.7716669166821 , 0, -3708.8462919492326))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(720.3287081897349 , 0, -3703.150077358332))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(436.96005854667277 , 0, -3464.5121317487774))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(358.97804266665383 , 0, -3078.5207041254716))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(365.1498872336338 , 0, -3062.123791774634))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(522.6353811875102 , 0, -2721.710314509957))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(747.8656016751311 , 0, -2111.3097350107982))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(689.4746338544434 , 0, -1752.4344910413577))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(590.284175974789 , 0, -1192.3098923110315))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(559.3450040260669 , 0, -791.010081531909))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(558.8779286027672 , 0, -779.3394242861089))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(578.3085530658759 , 0, 42.712170219159134))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(709.1137292230298 , 0, 311.23316346777773))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(913.7645911537704 , 0, 517.0651318431511))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(929.2164919303948 , 0, 525.3228047834745))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(1491.8153837633747 , 0, 856.0786483744549))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(1616.809454626315 , 0, 1235.000985231968))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(1557.4899885876716 , 0, 1888.2933137111831))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(1473.8656969868096 , 0, 2171.875421593194))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(1361.6932343513095 , 0, 2455.1294325257054))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(1358.507081854329 , 0, 2469.377535285933))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(1151.5335515379759 , 0, 2803.898308073733))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(693.9253139214399 , 0, 2400.2708705861164))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(848.4390911897456 , 0, 2173.1141510399975))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(854.1031745916937 , 0, 2159.6576225420613))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(896.8373571790341 , 0, 1811.6118358761405))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(875.0296186664623 , 0, 1726.7697322897247))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(873.5757694322908 , 0, 1721.1135920506304))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(872.1219201981194 , 0, 1715.457451811536))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(870.6680709639479 , 0, 1709.8013115724416))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(838.367410486258 , 0, 1395.8019729278496))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(258.87520400166574 , 0, 1250.3449351400384))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(270.03330621579835 , 0, 1704.496926971943))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(186.41065885446397 , 0, 2145.187257753666))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(119.02102034848346 , 0, 2450.371859532123))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(107.21176149793868 , 0, 2470.527032699349))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(-339.2909275624349 , 0, 2169.679577608857))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(-158.32910313425387 , 0, 1478.871444690874))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(-217.7270262205308 , 0, 1162.2747793462822))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(-213.58146937844742 , 0, 1136.3238109930787))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(-149.59387390828016 , 0, 866.976392907253))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(-92.94139249334242 , 0, 594.3920346307239))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(-92.52670101544253 , 0, 579.7979251690897))
+points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(-77.34899292430643 , 0, 45.653518873279836))
 
 const material = new three__WEBPACK_IMPORTED_MODULE_0__.LineBasicMaterial({ color: 0x0000ff });
 const geometry = new three__WEBPACK_IMPORTED_MODULE_0__.BufferGeometry().setFromPoints(points);
 line = new three__WEBPACK_IMPORTED_MODULE_0__.Line(geometry, material);
+
+const material_1 = new three__WEBPACK_IMPORTED_MODULE_0__.LineBasicMaterial({ color: 0xff0000 });
+const geometry_1 = new three__WEBPACK_IMPORTED_MODULE_0__.BufferGeometry().setFromPoints(points_2);
+line_1 = new three__WEBPACK_IMPORTED_MODULE_0__.Line(geometry_1, material_1);
 
 let CarPath = [
 	[110.82591138044131, 0, 12.665289114923294],
@@ -57010,11 +57113,104 @@ let CarPath = [
 	[317.91933835698313, 0, 1396.8949256196454],
 	[332.61953276497536, 0, 2137.0152625009196],
 	[-48.38183464640325, 0, 1529.0462923666703],
-	[-39.213402556689346, 0, 1108.7553851542427]
+	[-39.213402556689346, 0, 1108.7553851542427],
+	[110.82591138044131, 0, 12.665289114923294]
 ]
 
-let Health = 0; // Health of the player
-let Fuel = 0; // Fuel of the player
+let Car_Path2 = [
+	[-80.63649693493272, 0, 58.242120169284505],
+	[-17.196034426365273, 0, -1943.0554419096823],
+	[-176.64570651449858, 0, -2320.371012180431],
+	[-297.7593489138339, 0, -2579.700267415291],
+	[-411.9994596233227, 0, -2918.7550228031123],
+	[-416.7451102243694, 0, -2929.427473335807],
+	[-483.58696001944713, 0, -3213.502731413096],
+	[-353.32760127288293, 0, -3555.2921578786313],
+	[-106.96080515348204, 0, -3790.370292290352],
+	[168.2515014685185, 0, -4094.205365707294],
+	[484.1127126506378, 0, -4249.99827389554],
+	[1386.6178626595076, 0, -4305.347944328539],
+	[1401.1437581662603, 0, -4303.878808621091],
+	[2120.927060623796, 0, -4224.519747262838],
+	[2387.2820636474444, 0, -3837.2064528896776],
+	[2383.9076064486903, 0, -3814.097662111016],
+	[2309.492570452133, 0, -3365.496710243962],
+	[2305.989504777388, 0, -3277.9667809004573],
+	[2305.7559670657383, 0, -3272.131452277557],
+	[2305.6391982099135, 0, -3269.213787966107],
+	[2305.405660498264, 0, -3263.3784593432065],
+	[2305.172122786614, 0, -3257.543130720306],
+	[2304.9385850749645, 0, -3251.707802097406],
+	[2304.705047363315, 0, -3245.8724734745056],
+	[2304.471509651665, 0, -3240.0371448516053],
+	[2246.051879638632, 0, -2852.5981585549634],
+	[2175.4805470026095, 0, -2380.5617214287868],
+	[2162.618559264997, 0, -2065.768907473924],
+	[2111.1962263998007, 0, -1687.1399995972308],
+	[2062.3218475837066, 0, -1349.319391313393],
+	[2050.141183163967, 0, -1055.5815925621976],
+	[2047.52302708303, 0, -1038.2583232767577],
+	[1987.8670264347995, 0, -669.3277395748618],
+	[1907.488017955869, 0, -409.9029605978566],
+	[1552.3633020354848, 0, -201.1591781080189],
+	[1299.3721514293532, 0, -853.4290363096804],
+	[1384.6026464386996, 0, -1131.0144925504987],
+	[1410.7111793849092, 0, -1403.6385977224738],
+	[1438.332485330692, 0, -1942.601993583546],
+	[1650.7609309744432, 0, -2804.1888212754984],
+	[1665.9966347944837, 0, -3084.901967375079],
+	[1663.5174006616578, 0, -3105.1910530645478],
+	[1592.9498880519407, 0, -3386.480986296835],
+	[1372.6527169457588, 0, -3672.605806433587],
+	[1054.8164798675668, 0, -3766.024151566186],
+	[733.7716669166821, 0, -3708.8462919492326],
+	[720.3287081897349, 0, -3703.150077358332],
+	[436.96005854667277, 0, -3464.5121317487774],
+	[358.97804266665383, 0, -3078.5207041254716],
+	[365.1498872336338, 0, -3062.123791774634],
+	[522.6353811875102, 0, -2721.710314509957],
+	[747.8656016751311, 0, -2111.3097350107982],
+	[689.4746338544434, 0, -1752.4344910413577],
+	[590.284175974789, 0, -1192.3098923110315],
+	[559.3450040260669, 0, -791.010081531909],
+	[558.8779286027672, 0, -779.3394242861089],
+	[578.3085530658759, 0, 42.712170219159134],
+	[709.1137292230298, 0, 311.23316346777773],
+	[913.7645911537704, 0, 517.0651318431511],
+	[929.2164919303948, 0, 525.3228047834745],
+	[1491.8153837633747, 0, 856.0786483744549],
+	[1616.809454626315, 0, 1235.000985231968],
+	[1557.4899885876716, 0, 1888.2933137111831],
+	[1473.8656969868096, 0, 2171.875421593194],
+	[1361.6932343513095, 0, 2455.1294325257054],
+	[1358.507081854329, 0, 2469.377535285933],
+	[1151.5335515379759, 0, 2803.898308073733],
+	[693.9253139214399, 0, 2400.2708705861164],
+	[848.4390911897456, 0, 2173.1141510399975],
+	[854.1031745916937, 0, 2159.6576225420613],
+	[896.8373571790341, 0, 1811.6118358761405],
+	[875.0296186664623, 0, 1726.7697322897247],
+	[873.5757694322908, 0, 1721.1135920506304],
+	[872.1219201981194, 0, 1715.457451811536],
+	[870.6680709639479, 0, 1709.8013115724416],
+	[838.367410486258, 0, 1395.8019729278496],
+	[258.87520400166574, 0, 1250.3449351400384],
+	[270.03330621579835, 0, 1704.496926971943],
+	[186.41065885446397, 0, 2145.187257753666],
+	[119.02102034848346, 0, 2450.371859532123],
+	[107.21176149793868, 0, 2470.527032699349],
+	[-339.2909275624349, 0, 2169.679577608857],
+	[-158.32910313425387, 0, 1478.871444690874],
+	[-217.7270262205308, 0, 1162.2747793462822],
+	[-213.58146937844742, 0, 1136.3238109930787],
+	[-149.59387390828016, 0, 866.976392907253],
+	[-92.94139249334242, 0, 594.3920346307239],
+	[-92.52670101544253, 0, 579.7979251690897],
+	[-77.34899292430643, 0, 45.653518873279836]
+]
+
+let Health = 100; // Health of the player
+let Fuel = 100; // Fuel of the player
 let Score = 0; // Score of the player
 
 let isPOV = 0;
@@ -57028,7 +57224,6 @@ const frustumSize = 5000;
 
 camera = new three__WEBPACK_IMPORTED_MODULE_0__.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000000);
 camera.position.set(0, 50, 150);
-
 
 let FuelTank = [
 	[60.873041091420454, 0, - 1907.8854737263919],
@@ -57088,7 +57283,8 @@ let FuelTank = [
 	[-80.47025428693311, 0, 1065.8724968952595],
 	[-80.11108276401012, 0, 835.3502513603692],
 	[-39.1867442118355, 0, 411.0192253702205],
-	[-21.076782813029208, 0, 233.8242833247367]
+	[-21.076782813029208, 0, 233.8242833247367],
+	[110.82591138044131, 0, 12.665289114923294]
 ];
 
 let selectedCans = [];
@@ -57100,7 +57296,7 @@ for (let i = 0; i < 20; i++) {
 	}
 }
 
-console.log(selectedCans)
+// console.log(selectedCans)
 
 const aspect = window.innerWidth / window.innerHeight;
 bird_eye = new three__WEBPACK_IMPORTED_MODULE_0__.OrthographicCamera(frustumSize * aspect / - 8, frustumSize * aspect / 8, frustumSize / 8, frustumSize / - 8, 1, 1000);
@@ -57157,6 +57353,31 @@ loader.load(
 		console.log('An error happened');
 	}
 )
+
+let Car3;
+/*Load Another Car */
+loader.load(
+	// resource URL
+	'../src/Car_3/scene.gltf',
+	// called when the resource is loaded
+	function (gltf) {
+		Car3 = gltf.scene; 
+		Car3.scale.set(15, 15, 15)
+		Car3.position.set(-80.63649693493272, 0, 58.242120169284505)
+		// Car3.position.set(0, 0, 0)
+		Car3.rotation.y = 3.14
+		scene.add(Car3);
+	},
+	// called while loading is progressing
+	function (xhr) {
+		console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+	},
+	// called when loading has errors
+	function (error) {
+		console.log('An error happened');
+	}
+)
+
 
 let FuelModel = []
 function loadFuel() {
@@ -57381,6 +57602,15 @@ function onWindowResize() {
 	bird_eye_renderer.setSize(window.innerWidth / 2, window.innerHeight / 2);
 }
 
+function checkCarCollisions() {
+	//Car 1, Car 2
+	//Distance between car 1 and car 2
+	if (car.position.distanceTo(Car2.position) < 20) {
+		Health--;
+		console.log("Collission Occured")
+	}
+}
+
 function animate() {
 	requestAnimationFrame(animate);
 
@@ -57389,10 +57619,10 @@ function animate() {
 	car.translateZ(0.4);
 	car.translateZ(speed);
 
-	if (((Car2.position.x - Fin_x)**2 + (Car2.position.z - Fin_z)**2 >10)) {
+	if (((Car2.position.x - Fin_x) ** 2 + (Car2.position.z - Fin_z) ** 2 > 10)) {
 		//Enemy Car Position Update
-		Car2.position.x += (Fin_x - Int_x)*2/ (Math.sqrt((Fin_x-Int_x)**2 + (Fin_z-Int_z)**2))
-		Car2.position.z += (Fin_z - Int_z)*2/ (Math.sqrt((Fin_x-Int_x)**2 + (Fin_z-Int_z)**2))
+		Car2.position.x += (Fin_x - Int_x) * 2 / (Math.sqrt((Fin_x - Int_x) ** 2 + (Fin_z - Int_z) ** 2))
+		Car2.position.z += (Fin_z - Int_z) * 2 / (Math.sqrt((Fin_x - Int_x) ** 2 + (Fin_z - Int_z) ** 2))
 	}
 	else {
 		count++
@@ -57403,18 +57633,45 @@ function animate() {
 		Fin_x = CarPath[count][0]
 		Fin_z = CarPath[count][2]
 
-		console.log(Fin_x, Fin_z)
-		console.log(Car2.position.x, Car2.position.z)
+		// console.log(Fin_x, Fin_z)
+		// console.log(Car2.position.x, Car2.position.z)
 
 		//Enemy Car Rotation Update
 		Car2.rotation.y = Math.atan2(Fin_x - Int_x, Fin_z - Int_z)
 	}
 
+	/*Enemy Car 2 */
+	if (((Car3.position.x - Fin_x_1) ** 2 + (Car3.position.z - Fin_z_1) ** 2 > 10)) {
+		//Enemy Car Position Update
+		Car3.position.x += (Fin_x_1 - Int_x_1) * 3 / (Math.sqrt((Fin_x_1 - Int_x_1) ** 2 + (Fin_z_1 - Int_z_1) ** 2))
+		Car3.position.z += (Fin_z_1 - Int_z_1) * 3 / (Math.sqrt((Fin_x_1 - Int_x_1) ** 2 + (Fin_z_1 - Int_z_1) ** 2))
+	}
+	else {
+		count_1++
+		Car3.position.x = Fin_x_1
+		Car3.position.z = Fin_z_1
+		Int_x_1 = Fin_x_1
+		Int_z_1 = Fin_z_1
+		Fin_x_1 = Car_Path2[count_1][0]
+		Fin_z_1 = Car_Path2[count_1][2]
+
+		Car3.rotation.y = Math.atan2(Fin_x_1 - Int_x_1, Fin_z_1 - Int_z_1)
+	}
+
 	checkFuelCollisions()
+	checkCarCollisions()
 
 	document.querySelector("#paragraph").innerHTML = ("Time: " + Math.floor(Clock.getElapsedTime()) +
 		" Health: " + Health + " Fuel: " + Fuel + " Score: " + Score)
 
+	// Fuel = Fuel - 0.05
+
+	if (Fuel < 0) {
+		console.log("Game Over")
+		document.querySelector(".Main").remove()
+		document.body.style.backgroundImage = "url('http://localhost:8080/src/assets/GameOver.jpg')"
+		document.getElementById("paragraph").remove()
+	}
 	// can.rotation.y += 0.01
 	turn_car();
 	render();
@@ -57422,6 +57679,8 @@ function animate() {
 
 function render() {
 	scene.add(line);
+	scene.add(line_1);
+
 	renderer.render(scene, camera);
 	bird_eye_renderer.render(scene, bird_eye);
 }
