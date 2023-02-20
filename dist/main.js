@@ -57514,12 +57514,12 @@ function init() {
 	function onDocumentKeyDown(event) {
 		var keyCode = event.which;
 		if (keyCode == 87) {
-			if (speed < 5) {
-				speed += 0.04;
+			if (speed < 4.5) {
+				speed += 0.07;
 			}
 		} else if (keyCode == 83) {
-			if (speed > -5) {
-				speed -= 0.04;
+			if (speed > -4.5) {
+				speed -= 0.07;
 			}
 		}
 		else if (keyCode == 68) {
@@ -57591,12 +57591,12 @@ function turn_car() {
 	if (rotation_ticks > 2) {
 		rotation_ticks -= 2;
 		// console.log(rotation_ticks); 
-		car.rotation.y += 0.01;
+		car.rotation.y += 0.02;
 	}
 	if (rotation_ticks < -2) {
 		rotation_ticks += 2;
 		// console.log(rotation_ticks);
-		car.rotation.y -= 0.01;
+		car.rotation.y -= 0.02;
 	}
 }
 
@@ -57613,12 +57613,12 @@ function checkCarCollisions() {
 	//Car 1, Car 2
 	//Distance between car 1 and car 2
 	if (car.position.distanceTo(Car2.position) < 20) {
-		Health = Health - 0.5;
+		Health = Health - 1.5;
 		console.log("Collission Occured")
 	}
 
 	if (car.position.distanceTo(Car3.position) < 20) {
-		Health = Health - 0.5;
+		Health = Health - 1.5;
 		console.log("Collission Occured")
 	}
 }
@@ -57631,10 +57631,14 @@ function animate() {
 	car.translateZ(0.4);
 	car.translateZ(speed);
 
+	// if(speed> 0){
+	// 	speed = speed - 0.02 //Friction
+	// }
+
 	if (((Car2.position.x - Fin_x) ** 2 + (Car2.position.z - Fin_z) ** 2 > 10)) {
 		//Enemy Car Position Update
-		Car2.position.x += (Fin_x - Int_x) * 5 / (Math.sqrt((Fin_x - Int_x) ** 2 + (Fin_z - Int_z) ** 2))
-		Car2.position.z += (Fin_z - Int_z) * 5 / (Math.sqrt((Fin_x - Int_x) ** 2 + (Fin_z - Int_z) ** 2))
+		Car2.position.x += (Fin_x - Int_x) * 4 / (Math.sqrt((Fin_x - Int_x) ** 2 + (Fin_z - Int_z) ** 2))
+		Car2.position.z += (Fin_z - Int_z) * 4 / (Math.sqrt((Fin_x - Int_x) ** 2 + (Fin_z - Int_z) ** 2))
 
 		if (count == points.length - 1 && count_1 < points_2.length) {
 			document.querySelector(".Main").remove()
@@ -57667,8 +57671,8 @@ function animate() {
 	/*Enemy Car 2 */
 	if (((Car3.position.x - Fin_x_1) ** 2 + (Car3.position.z - Fin_z_1) ** 2 > 10)) {
 		//Enemy Car Position Update
-		Car3.position.x += (Fin_x_1 - Int_x_1) * 3 / (Math.sqrt((Fin_x_1 - Int_x_1) ** 2 + (Fin_z_1 - Int_z_1) ** 2))
-		Car3.position.z += (Fin_z_1 - Int_z_1) * 3 / (Math.sqrt((Fin_x_1 - Int_x_1) ** 2 + (Fin_z_1 - Int_z_1) ** 2))
+		Car3.position.x += (Fin_x_1 - Int_x_1) * 4.2 / (Math.sqrt((Fin_x_1 - Int_x_1) ** 2 + (Fin_z_1 - Int_z_1) ** 2))
+		Car3.position.z += (Fin_z_1 - Int_z_1) * 4.2 / (Math.sqrt((Fin_x_1 - Int_x_1) ** 2 + (Fin_z_1 - Int_z_1) ** 2))
 
 		if (count_1 == points_2.length && count < points.length) {
 			document.querySelector(".Main").remove()
@@ -57700,9 +57704,9 @@ function animate() {
 
 
 	document.querySelector("#paragraph").innerHTML = ("Time: " + Math.floor(Clock.getElapsedTime()) +
-		" Health: " + Health + " Fuel: " + Fuel + " Score: " + Score + "Distance To Next" + Math.floor(distanceToNextFuelCan()) / 100)
+		" Health: " + Health + " Fuel: " + Math.floor(Fuel) + " Score: " + Score + "Distance To Next" + Math.floor(distanceToNextFuelCan()) / 100)
 
-	// Fuel = Fuel - 0.05
+	Fuel = Fuel - 0.05
 
 	if (count_1 == points.length - 1 && count_2 < points_2.length) {
 		Winner = 2;
