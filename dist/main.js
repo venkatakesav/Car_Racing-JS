@@ -56895,6 +56895,9 @@ Clock.start();
 
 let line, line_1;
 
+let Winner = 0; // 0 = No Winner, 1 = Player 1, 2 = Player 2 3 = Player 3
+
+/*AI Cars Initial Coordinates -----------------------------------*/
 let Int_x = 110.82591138044131;
 let Int_z = 12.665289114923294;
 let Fin_x = 90.78880565311941;
@@ -56904,12 +56907,13 @@ let Int_x_1 = -80.63649693493272;
 let Int_z_1 = 58.242120169284505;
 let Fin_x_1 = -17.196034426365273;
 let Fin_z_1 = -1943.0554419096823;
+/*---------------------------------------------------------------*/
 
 let flag = 1;
-
 let count = 1;
 let count_1 = 1;
 
+/*Line Helpers */
 const points = []
 points.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(110.82591138044131, 0, 12.665289114923294))
 points.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(90.78880565311941, 0, -1075.7502907046955))
@@ -57054,7 +57058,9 @@ points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(-149.59387390828016
 points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(-92.94139249334242 , 0, 594.3920346307239))
 points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(-92.52670101544253 , 0, 579.7979251690897))
 points_2.push(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(-77.34899292430643 , 0, 45.653518873279836))
+/*---------------------------------------------------------------------- */
 
+/*Construct Lines ------------------------------------------------------ */
 const material = new three__WEBPACK_IMPORTED_MODULE_0__.LineBasicMaterial({ color: 0x0000ff });
 const geometry = new three__WEBPACK_IMPORTED_MODULE_0__.BufferGeometry().setFromPoints(points);
 line = new three__WEBPACK_IMPORTED_MODULE_0__.Line(geometry, material);
@@ -57062,6 +57068,7 @@ line = new three__WEBPACK_IMPORTED_MODULE_0__.Line(geometry, material);
 const material_1 = new three__WEBPACK_IMPORTED_MODULE_0__.LineBasicMaterial({ color: 0xff0000 });
 const geometry_1 = new three__WEBPACK_IMPORTED_MODULE_0__.BufferGeometry().setFromPoints(points_2);
 line_1 = new three__WEBPACK_IMPORTED_MODULE_0__.Line(geometry_1, material_1);
+/*Construct Lines Complete -------------------------------------------- */
 
 let CarPath = [
 	[110.82591138044131, 0, 12.665289114923294],
@@ -57287,6 +57294,7 @@ let FuelTank = [
 	[110.82591138044131, 0, 12.665289114923294]
 ];
 
+/*Generate a Random 20 Cans out of 58 */
 let selectedCans = [];
 for (let i = 0; i < 20; i++) {
 	/*Generate a Random 20 Cans out of 58 */
@@ -57442,30 +57450,6 @@ loader.load(
 	}
 )
 
-for (let i = 0; i < 10; i++) {
-	loader.load(
-		// resource URL
-		'../src/Crowd/scene.gltf',
-		// called when the resource is loaded
-		function (gltf) {
-			console.log(gltf);
-			people[i] = gltf.scene;
-			people[i].scale.set(60, 60, 60)
-			people[i].position.set(-600, -i * 200, 0)
-			people[i].rotation.y = 1.40
-			scene.add(people[i]);
-		},
-		// called while loading is progressing
-		function (xhr) {
-			console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-		},
-		// called when loading has errors
-		function (error) {
-			console.log('An error happened');
-		}
-	)
-}
-
 loadFuel();
 
 function checkFuelCollisions() {
@@ -57572,6 +57556,15 @@ function init() {
 			document.getElementById("paragraph").remove()
 			// document.getElementsByTagName("body")[0].backgroundImage = "url('http://localhost:8080/src/assets/GameOver.jpg')"
 		}
+		if(keyCode == 49){
+			Winner = 1
+		}
+		if(keyCode == 50){
+			Winner = 2
+		}
+		if(keyCode == 51){
+			Winner = 3
+		}
 	};
 
 
@@ -57620,7 +57613,12 @@ function checkCarCollisions() {
 	//Car 1, Car 2
 	//Distance between car 1 and car 2
 	if (car.position.distanceTo(Car2.position) < 20) {
-		Health--;
+		Health = Health -0.5 ;
+		console.log("Collission Occured")
+	}
+
+	if (car.position.distanceTo(Car3.position) < 20) {
+		Health = Health - 0.5;
 		console.log("Collission Occured")
 	}
 }
@@ -57682,14 +57680,30 @@ function animate() {
 
 	// Fuel = Fuel - 0.05
 
-	if (Fuel < 0) {
+	if (Fuel < 0 || Health < 0) {
 		console.log("Game Over")
 		document.querySelector(".Main").remove()
 		document.body.style.backgroundImage = "url('http://localhost:8080/src/assets/GameOver.jpg')"
 		document.getElementById("paragraph").remove()
 	}
 
+	if(Winner == 1){
+		document.querySelector(".Main").remove()
+		document.body.style.backgroundImage = "url('http://localhost:8080/src/assets/1stRank.jpg')"
+		document.getElementById("paragraph").remove()
+	}
 
+	if(Winner == 2){
+		document.querySelector(".Main").remove()
+		document.body.style.backgroundImage = "url('http://localhost:8080/src/assets/2ndRank.jpg')"
+		document.getElementById("paragraph").remove()
+	}
+
+	if(Winner == 3){
+		document.querySelector(".Main").remove()
+		document.body.style.backgroundImage = "url('http://localhost:8080/src/assets/3rdRank.jpg')"
+		document.getElementById("paragraph").remove()
+	}
 	// can.rotation.y += 0.01
 	turn_car();
 	render();
