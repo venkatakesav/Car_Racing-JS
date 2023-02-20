@@ -57635,6 +57635,12 @@ function animate() {
 		//Enemy Car Position Update
 		Car2.position.x += (Fin_x - Int_x) * 5 / (Math.sqrt((Fin_x - Int_x) ** 2 + (Fin_z - Int_z) ** 2))
 		Car2.position.z += (Fin_z - Int_z) * 5 / (Math.sqrt((Fin_x - Int_x) ** 2 + (Fin_z - Int_z) ** 2))
+
+		if (count == points.length - 1 && count_1 < points_2.length) {
+			document.querySelector(".Main").remove()
+			document.body.style.backgroundImage = "url('http://localhost:8080/src/assets/2ndRank.jpg')"
+			document.getElementById("paragraph").remove()
+		}
 	}
 	else {
 		count++
@@ -57644,6 +57650,12 @@ function animate() {
 		Int_z = Fin_z
 		Fin_x = CarPath[count][0]
 		Fin_z = CarPath[count][2]
+
+		if (count == points.length && count_1 < points_2.length) {
+			document.querySelector(".Main").remove()
+			document.body.style.backgroundImage = "url('http://localhost:8080/src/assets/2ndRank.jpg')"
+			document.getElementById("paragraph").remove()
+		}
 
 		// console.log(Fin_x, Fin_z)
 		// console.log(Car2.position.x, Car2.position.z)
@@ -57657,6 +57669,12 @@ function animate() {
 		//Enemy Car Position Update
 		Car3.position.x += (Fin_x_1 - Int_x_1) * 3 / (Math.sqrt((Fin_x_1 - Int_x_1) ** 2 + (Fin_z_1 - Int_z_1) ** 2))
 		Car3.position.z += (Fin_z_1 - Int_z_1) * 3 / (Math.sqrt((Fin_x_1 - Int_x_1) ** 2 + (Fin_z_1 - Int_z_1) ** 2))
+
+		if (count_1 == points_2.length && count < points.length) {
+			document.querySelector(".Main").remove()
+			document.body.style.backgroundImage = "url('http://localhost:8080/src/assets/2ndRank.jpg')"
+			document.getElementById("paragraph").remove()
+		}
 	}
 	else {
 		count_1++
@@ -57666,6 +57684,12 @@ function animate() {
 		Int_z_1 = Fin_z_1
 		Fin_x_1 = Car_Path2[count_1][0]
 		Fin_z_1 = Car_Path2[count_1][2]
+
+		if (count_1 == points_2.length && count < points.length) {
+			document.querySelector(".Main").remove()
+			document.body.style.backgroundImage = "url('http://localhost:8080/src/assets/2ndRank.jpg')"
+			document.getElementById("paragraph").remove()
+		}
 
 		Car3.rotation.y = Math.atan2(Fin_x_1 - Int_x_1, Fin_z_1 - Int_z_1)
 	}
@@ -57688,6 +57712,10 @@ function animate() {
 		Winner = 2;
 	}
 
+	if (count == points.length - 1 && count_1 == points_2.length - 1) {
+		Winner = 1;
+	}
+
 	if (Fuel < 0 || Health < 0) {
 		console.log("Game Over")
 		document.querySelector(".Main").remove()
@@ -57695,23 +57723,12 @@ function animate() {
 		document.getElementById("paragraph").remove()
 	}
 
-	if (Winner == 1) {
+	if (Clock.getElapsedTime() > 10 && ((Math.abs(car.position.x) < 70) && (Math.abs(car.position.z) < 70))) {
 		document.querySelector(".Main").remove()
 		document.body.style.backgroundImage = "url('http://localhost:8080/src/assets/1stRank.jpg')"
 		document.getElementById("paragraph").remove()
 	}
 
-	if (Winner == 2) {
-		document.querySelector(".Main").remove()
-		document.body.style.backgroundImage = "url('http://localhost:8080/src/assets/2ndRank.jpg')"
-		document.getElementById("paragraph").remove()
-	}
-
-	if (Winner == 3) {
-		document.querySelector(".Main").remove()
-		document.body.style.backgroundImage = "url('http://localhost:8080/src/assets/3rdRank.jpg')"
-		document.getElementById("paragraph").remove()
-	}
 	// can.rotation.y += 0.01
 	turn_car();
 	render();
