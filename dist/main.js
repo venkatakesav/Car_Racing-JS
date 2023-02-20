@@ -57484,6 +57484,20 @@ function checkFuelCollisions() {
 	}
 }
 
+function distanceToNextFuelCan(){
+	let min = 10000 
+	for(let i = 0; i < 58; i++){
+		if(selectedCans.includes(i)){
+			// return car.position.distanceTo(FuelModel[i].position)
+			if(car.position.distanceTo(FuelModel[i].position) < min){
+				min = car.position.distanceTo(FuelModel[i].position)
+			}
+		}
+	}
+
+	return min
+}
+
 // loadPoints()
 
 init();
@@ -57661,8 +57675,10 @@ function animate() {
 	checkFuelCollisions()
 	checkCarCollisions()
 
+
+
 	document.querySelector("#paragraph").innerHTML = ("Time: " + Math.floor(Clock.getElapsedTime()) +
-		" Health: " + Health + " Fuel: " + Fuel + " Score: " + Score)
+		" Health: " + Health + " Fuel: " + Fuel + " Score: " + Score + "Distance To Next" + Math.floor(distanceToNextFuelCan())/100)
 
 	// Fuel = Fuel - 0.05
 
@@ -57672,6 +57688,8 @@ function animate() {
 		document.body.style.backgroundImage = "url('http://localhost:8080/src/assets/GameOver.jpg')"
 		document.getElementById("paragraph").remove()
 	}
+
+
 	// can.rotation.y += 0.01
 	turn_car();
 	render();
