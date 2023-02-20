@@ -83,94 +83,94 @@ points.push(new THREE.Vector3(110.82591138044131, 0, 12.665289114923294))
 
 const points_2 = [];
 points_2.push(new THREE.Vector3(-80.63649693493272, 0, 58.242120169284505))
-points_2.push(new THREE.Vector3(-17.196034426365273 , 0, -1943.0554419096823))
-points_2.push(new THREE.Vector3(-176.64570651449858 , 0, -2320.371012180431))
-points_2.push(new THREE.Vector3(-297.7593489138339 , 0, -2579.700267415291))
-points_2.push(new THREE.Vector3(-411.9994596233227 , 0, -2918.7550228031123))
-points_2.push(new THREE.Vector3(-416.7451102243694 , 0, -2929.427473335807))
-points_2.push(new THREE.Vector3(-483.58696001944713 , 0, -3213.502731413096))
-points_2.push(new THREE.Vector3(-353.32760127288293 , 0, -3555.2921578786313))
-points_2.push(new THREE.Vector3(-106.96080515348204 , 0, -3790.370292290352))
-points_2.push(new THREE.Vector3(168.2515014685185 , 0, -4094.205365707294))
-points_2.push(new THREE.Vector3(484.1127126506378 , 0, -4249.99827389554))
-points_2.push(new THREE.Vector3(1386.6178626595076 , 0, -4305.347944328539))
-points_2.push(new THREE.Vector3(1401.1437581662603 , 0, -4303.878808621091))
-points_2.push(new THREE.Vector3(2120.927060623796 , 0, -4224.519747262838))
-points_2.push(new THREE.Vector3(2387.2820636474444 , 0, -3837.2064528896776))
-points_2.push(new THREE.Vector3(2383.9076064486903 , 0, -3814.097662111016))
-points_2.push(new THREE.Vector3(2309.492570452133 , 0, -3365.496710243962))
-points_2.push(new THREE.Vector3(2305.989504777388 , 0, -3277.9667809004573))
-points_2.push(new THREE.Vector3(2305.7559670657383 , 0, -3272.131452277557))
-points_2.push(new THREE.Vector3(2305.6391982099135 , 0, -3269.213787966107))
-points_2.push(new THREE.Vector3(2305.405660498264 , 0, -3263.3784593432065))
-points_2.push(new THREE.Vector3(2305.172122786614 , 0, -3257.543130720306))
-points_2.push(new THREE.Vector3(2304.9385850749645 , 0, -3251.707802097406))
-points_2.push(new THREE.Vector3(2304.705047363315 , 0, -3245.8724734745056))
-points_2.push(new THREE.Vector3(2304.471509651665 , 0, -3240.0371448516053))
-points_2.push(new THREE.Vector3(2246.051879638632 , 0, -2852.5981585549634))
-points_2.push(new THREE.Vector3(2175.4805470026095 , 0, -2380.5617214287868))
-points_2.push(new THREE.Vector3(2162.618559264997 , 0, -2065.768907473924))
-points_2.push(new THREE.Vector3(2111.1962263998007 , 0, -1687.1399995972308))
-points_2.push(new THREE.Vector3(2062.3218475837066 , 0, -1349.319391313393))
-points_2.push(new THREE.Vector3(2050.141183163967 , 0, -1055.5815925621976))
-points_2.push(new THREE.Vector3(2047.52302708303 , 0, -1038.2583232767577))
-points_2.push(new THREE.Vector3(1987.8670264347995 , 0, -669.3277395748618))
-points_2.push(new THREE.Vector3(1907.488017955869 , 0, -409.9029605978566))
-points_2.push(new THREE.Vector3(1552.3633020354848 , 0, -201.1591781080189))
-points_2.push(new THREE.Vector3(1299.3721514293532 , 0, -853.4290363096804))
-points_2.push(new THREE.Vector3(1384.6026464386996 , 0, -1131.0144925504987))
-points_2.push(new THREE.Vector3(1410.7111793849092 , 0, -1403.6385977224738))
-points_2.push(new THREE.Vector3(1438.332485330692 , 0, -1942.601993583546))
-points_2.push(new THREE.Vector3(1650.7609309744432 , 0, -2804.1888212754984))
-points_2.push(new THREE.Vector3(1665.9966347944837 , 0, -3084.901967375079))
-points_2.push(new THREE.Vector3(1663.5174006616578 , 0, -3105.1910530645478))
-points_2.push(new THREE.Vector3(1592.9498880519407 , 0, -3386.480986296835))
-points_2.push(new THREE.Vector3(1372.6527169457588 , 0, -3672.605806433587))
-points_2.push(new THREE.Vector3(1054.8164798675668 , 0, -3766.024151566186))
-points_2.push(new THREE.Vector3(733.7716669166821 , 0, -3708.8462919492326))
-points_2.push(new THREE.Vector3(720.3287081897349 , 0, -3703.150077358332))
-points_2.push(new THREE.Vector3(436.96005854667277 , 0, -3464.5121317487774))
-points_2.push(new THREE.Vector3(358.97804266665383 , 0, -3078.5207041254716))
-points_2.push(new THREE.Vector3(365.1498872336338 , 0, -3062.123791774634))
-points_2.push(new THREE.Vector3(522.6353811875102 , 0, -2721.710314509957))
-points_2.push(new THREE.Vector3(747.8656016751311 , 0, -2111.3097350107982))
-points_2.push(new THREE.Vector3(689.4746338544434 , 0, -1752.4344910413577))
-points_2.push(new THREE.Vector3(590.284175974789 , 0, -1192.3098923110315))
-points_2.push(new THREE.Vector3(559.3450040260669 , 0, -791.010081531909))
-points_2.push(new THREE.Vector3(558.8779286027672 , 0, -779.3394242861089))
-points_2.push(new THREE.Vector3(578.3085530658759 , 0, 42.712170219159134))
-points_2.push(new THREE.Vector3(709.1137292230298 , 0, 311.23316346777773))
-points_2.push(new THREE.Vector3(913.7645911537704 , 0, 517.0651318431511))
-points_2.push(new THREE.Vector3(929.2164919303948 , 0, 525.3228047834745))
-points_2.push(new THREE.Vector3(1491.8153837633747 , 0, 856.0786483744549))
-points_2.push(new THREE.Vector3(1616.809454626315 , 0, 1235.000985231968))
-points_2.push(new THREE.Vector3(1557.4899885876716 , 0, 1888.2933137111831))
-points_2.push(new THREE.Vector3(1473.8656969868096 , 0, 2171.875421593194))
-points_2.push(new THREE.Vector3(1361.6932343513095 , 0, 2455.1294325257054))
-points_2.push(new THREE.Vector3(1358.507081854329 , 0, 2469.377535285933))
-points_2.push(new THREE.Vector3(1151.5335515379759 , 0, 2803.898308073733))
-points_2.push(new THREE.Vector3(693.9253139214399 , 0, 2400.2708705861164))
-points_2.push(new THREE.Vector3(848.4390911897456 , 0, 2173.1141510399975))
-points_2.push(new THREE.Vector3(854.1031745916937 , 0, 2159.6576225420613))
-points_2.push(new THREE.Vector3(896.8373571790341 , 0, 1811.6118358761405))
-points_2.push(new THREE.Vector3(875.0296186664623 , 0, 1726.7697322897247))
-points_2.push(new THREE.Vector3(873.5757694322908 , 0, 1721.1135920506304))
-points_2.push(new THREE.Vector3(872.1219201981194 , 0, 1715.457451811536))
-points_2.push(new THREE.Vector3(870.6680709639479 , 0, 1709.8013115724416))
-points_2.push(new THREE.Vector3(838.367410486258 , 0, 1395.8019729278496))
-points_2.push(new THREE.Vector3(258.87520400166574 , 0, 1250.3449351400384))
-points_2.push(new THREE.Vector3(270.03330621579835 , 0, 1704.496926971943))
-points_2.push(new THREE.Vector3(186.41065885446397 , 0, 2145.187257753666))
-points_2.push(new THREE.Vector3(119.02102034848346 , 0, 2450.371859532123))
-points_2.push(new THREE.Vector3(107.21176149793868 , 0, 2470.527032699349))
-points_2.push(new THREE.Vector3(-339.2909275624349 , 0, 2169.679577608857))
-points_2.push(new THREE.Vector3(-158.32910313425387 , 0, 1478.871444690874))
-points_2.push(new THREE.Vector3(-217.7270262205308 , 0, 1162.2747793462822))
-points_2.push(new THREE.Vector3(-213.58146937844742 , 0, 1136.3238109930787))
-points_2.push(new THREE.Vector3(-149.59387390828016 , 0, 866.976392907253))
-points_2.push(new THREE.Vector3(-92.94139249334242 , 0, 594.3920346307239))
-points_2.push(new THREE.Vector3(-92.52670101544253 , 0, 579.7979251690897))
-points_2.push(new THREE.Vector3(-77.34899292430643 , 0, 45.653518873279836))
+points_2.push(new THREE.Vector3(-17.196034426365273, 0, -1943.0554419096823))
+points_2.push(new THREE.Vector3(-176.64570651449858, 0, -2320.371012180431))
+points_2.push(new THREE.Vector3(-297.7593489138339, 0, -2579.700267415291))
+points_2.push(new THREE.Vector3(-411.9994596233227, 0, -2918.7550228031123))
+points_2.push(new THREE.Vector3(-416.7451102243694, 0, -2929.427473335807))
+points_2.push(new THREE.Vector3(-483.58696001944713, 0, -3213.502731413096))
+points_2.push(new THREE.Vector3(-353.32760127288293, 0, -3555.2921578786313))
+points_2.push(new THREE.Vector3(-106.96080515348204, 0, -3790.370292290352))
+points_2.push(new THREE.Vector3(168.2515014685185, 0, -4094.205365707294))
+points_2.push(new THREE.Vector3(484.1127126506378, 0, -4249.99827389554))
+points_2.push(new THREE.Vector3(1386.6178626595076, 0, -4305.347944328539))
+points_2.push(new THREE.Vector3(1401.1437581662603, 0, -4303.878808621091))
+points_2.push(new THREE.Vector3(2120.927060623796, 0, -4224.519747262838))
+points_2.push(new THREE.Vector3(2387.2820636474444, 0, -3837.2064528896776))
+points_2.push(new THREE.Vector3(2383.9076064486903, 0, -3814.097662111016))
+points_2.push(new THREE.Vector3(2309.492570452133, 0, -3365.496710243962))
+points_2.push(new THREE.Vector3(2305.989504777388, 0, -3277.9667809004573))
+points_2.push(new THREE.Vector3(2305.7559670657383, 0, -3272.131452277557))
+points_2.push(new THREE.Vector3(2305.6391982099135, 0, -3269.213787966107))
+points_2.push(new THREE.Vector3(2305.405660498264, 0, -3263.3784593432065))
+points_2.push(new THREE.Vector3(2305.172122786614, 0, -3257.543130720306))
+points_2.push(new THREE.Vector3(2304.9385850749645, 0, -3251.707802097406))
+points_2.push(new THREE.Vector3(2304.705047363315, 0, -3245.8724734745056))
+points_2.push(new THREE.Vector3(2304.471509651665, 0, -3240.0371448516053))
+points_2.push(new THREE.Vector3(2246.051879638632, 0, -2852.5981585549634))
+points_2.push(new THREE.Vector3(2175.4805470026095, 0, -2380.5617214287868))
+points_2.push(new THREE.Vector3(2162.618559264997, 0, -2065.768907473924))
+points_2.push(new THREE.Vector3(2111.1962263998007, 0, -1687.1399995972308))
+points_2.push(new THREE.Vector3(2062.3218475837066, 0, -1349.319391313393))
+points_2.push(new THREE.Vector3(2050.141183163967, 0, -1055.5815925621976))
+points_2.push(new THREE.Vector3(2047.52302708303, 0, -1038.2583232767577))
+points_2.push(new THREE.Vector3(1987.8670264347995, 0, -669.3277395748618))
+points_2.push(new THREE.Vector3(1907.488017955869, 0, -409.9029605978566))
+points_2.push(new THREE.Vector3(1552.3633020354848, 0, -201.1591781080189))
+points_2.push(new THREE.Vector3(1299.3721514293532, 0, -853.4290363096804))
+points_2.push(new THREE.Vector3(1384.6026464386996, 0, -1131.0144925504987))
+points_2.push(new THREE.Vector3(1410.7111793849092, 0, -1403.6385977224738))
+points_2.push(new THREE.Vector3(1438.332485330692, 0, -1942.601993583546))
+points_2.push(new THREE.Vector3(1650.7609309744432, 0, -2804.1888212754984))
+points_2.push(new THREE.Vector3(1665.9966347944837, 0, -3084.901967375079))
+points_2.push(new THREE.Vector3(1663.5174006616578, 0, -3105.1910530645478))
+points_2.push(new THREE.Vector3(1592.9498880519407, 0, -3386.480986296835))
+points_2.push(new THREE.Vector3(1372.6527169457588, 0, -3672.605806433587))
+points_2.push(new THREE.Vector3(1054.8164798675668, 0, -3766.024151566186))
+points_2.push(new THREE.Vector3(733.7716669166821, 0, -3708.8462919492326))
+points_2.push(new THREE.Vector3(720.3287081897349, 0, -3703.150077358332))
+points_2.push(new THREE.Vector3(436.96005854667277, 0, -3464.5121317487774))
+points_2.push(new THREE.Vector3(358.97804266665383, 0, -3078.5207041254716))
+points_2.push(new THREE.Vector3(365.1498872336338, 0, -3062.123791774634))
+points_2.push(new THREE.Vector3(522.6353811875102, 0, -2721.710314509957))
+points_2.push(new THREE.Vector3(747.8656016751311, 0, -2111.3097350107982))
+points_2.push(new THREE.Vector3(689.4746338544434, 0, -1752.4344910413577))
+points_2.push(new THREE.Vector3(590.284175974789, 0, -1192.3098923110315))
+points_2.push(new THREE.Vector3(559.3450040260669, 0, -791.010081531909))
+points_2.push(new THREE.Vector3(558.8779286027672, 0, -779.3394242861089))
+points_2.push(new THREE.Vector3(578.3085530658759, 0, 42.712170219159134))
+points_2.push(new THREE.Vector3(709.1137292230298, 0, 311.23316346777773))
+points_2.push(new THREE.Vector3(913.7645911537704, 0, 517.0651318431511))
+points_2.push(new THREE.Vector3(929.2164919303948, 0, 525.3228047834745))
+points_2.push(new THREE.Vector3(1491.8153837633747, 0, 856.0786483744549))
+points_2.push(new THREE.Vector3(1616.809454626315, 0, 1235.000985231968))
+points_2.push(new THREE.Vector3(1557.4899885876716, 0, 1888.2933137111831))
+points_2.push(new THREE.Vector3(1473.8656969868096, 0, 2171.875421593194))
+points_2.push(new THREE.Vector3(1361.6932343513095, 0, 2455.1294325257054))
+points_2.push(new THREE.Vector3(1358.507081854329, 0, 2469.377535285933))
+points_2.push(new THREE.Vector3(1151.5335515379759, 0, 2803.898308073733))
+points_2.push(new THREE.Vector3(693.9253139214399, 0, 2400.2708705861164))
+points_2.push(new THREE.Vector3(848.4390911897456, 0, 2173.1141510399975))
+points_2.push(new THREE.Vector3(854.1031745916937, 0, 2159.6576225420613))
+points_2.push(new THREE.Vector3(896.8373571790341, 0, 1811.6118358761405))
+points_2.push(new THREE.Vector3(875.0296186664623, 0, 1726.7697322897247))
+points_2.push(new THREE.Vector3(873.5757694322908, 0, 1721.1135920506304))
+points_2.push(new THREE.Vector3(872.1219201981194, 0, 1715.457451811536))
+points_2.push(new THREE.Vector3(870.6680709639479, 0, 1709.8013115724416))
+points_2.push(new THREE.Vector3(838.367410486258, 0, 1395.8019729278496))
+points_2.push(new THREE.Vector3(258.87520400166574, 0, 1250.3449351400384))
+points_2.push(new THREE.Vector3(270.03330621579835, 0, 1704.496926971943))
+points_2.push(new THREE.Vector3(186.41065885446397, 0, 2145.187257753666))
+points_2.push(new THREE.Vector3(119.02102034848346, 0, 2450.371859532123))
+points_2.push(new THREE.Vector3(107.21176149793868, 0, 2470.527032699349))
+points_2.push(new THREE.Vector3(-339.2909275624349, 0, 2169.679577608857))
+points_2.push(new THREE.Vector3(-158.32910313425387, 0, 1478.871444690874))
+points_2.push(new THREE.Vector3(-217.7270262205308, 0, 1162.2747793462822))
+points_2.push(new THREE.Vector3(-213.58146937844742, 0, 1136.3238109930787))
+points_2.push(new THREE.Vector3(-149.59387390828016, 0, 866.976392907253))
+points_2.push(new THREE.Vector3(-92.94139249334242, 0, 594.3920346307239))
+points_2.push(new THREE.Vector3(-92.52670101544253, 0, 579.7979251690897))
+points_2.push(new THREE.Vector3(-77.34899292430643, 0, 45.653518873279836))
 /*---------------------------------------------------------------------- */
 
 /*Construct Lines ------------------------------------------------------ */
@@ -482,7 +482,7 @@ loader.load(
 	'../src/Car_3/scene.gltf',
 	// called when the resource is loaded
 	function (gltf) {
-		Car3 = gltf.scene; 
+		Car3 = gltf.scene;
 		Car3.scale.set(15, 15, 15)
 		Car3.position.set(-80.63649693493272, 0, 58.242120169284505)
 		// Car3.position.set(0, 0, 0)
@@ -581,12 +581,12 @@ function checkFuelCollisions() {
 	}
 }
 
-function distanceToNextFuelCan(){
-	let min = 10000 
-	for(let i = 0; i < 58; i++){
-		if(selectedCans.includes(i)){
+function distanceToNextFuelCan() {
+	let min = 10000
+	for (let i = 0; i < 58; i++) {
+		if (selectedCans.includes(i)) {
 			// return car.position.distanceTo(FuelModel[i].position)
-			if(car.position.distanceTo(FuelModel[i].position) < min){
+			if (car.position.distanceTo(FuelModel[i].position) < min) {
 				min = car.position.distanceTo(FuelModel[i].position)
 			}
 		}
@@ -627,11 +627,11 @@ function init() {
 	function onDocumentKeyDown(event) {
 		var keyCode = event.which;
 		if (keyCode == 87) {
-			if (speed < 2.5) {
+			if (speed < 5) {
 				speed += 0.04;
 			}
 		} else if (keyCode == 83) {
-			if (speed > -2.5) {
+			if (speed > -5) {
 				speed -= 0.04;
 			}
 		}
@@ -669,13 +669,13 @@ function init() {
 			document.getElementById("paragraph").remove()
 			// document.getElementsByTagName("body")[0].backgroundImage = "url('http://localhost:8080/src/assets/GameOver.jpg')"
 		}
-		if(keyCode == 49){
+		if (keyCode == 49) {
 			Winner = 1
 		}
-		if(keyCode == 50){
+		if (keyCode == 50) {
 			Winner = 2
 		}
-		if(keyCode == 51){
+		if (keyCode == 51) {
 			Winner = 3
 		}
 	};
@@ -726,7 +726,7 @@ function checkCarCollisions() {
 	//Car 1, Car 2
 	//Distance between car 1 and car 2
 	if (car.position.distanceTo(Car2.position) < 20) {
-		Health = Health -0.5 ;
+		Health = Health - 0.5;
 		console.log("Collission Occured")
 	}
 
@@ -746,8 +746,8 @@ function animate() {
 
 	if (((Car2.position.x - Fin_x) ** 2 + (Car2.position.z - Fin_z) ** 2 > 10)) {
 		//Enemy Car Position Update
-		Car2.position.x += (Fin_x - Int_x) * 2 / (Math.sqrt((Fin_x - Int_x) ** 2 + (Fin_z - Int_z) ** 2))
-		Car2.position.z += (Fin_z - Int_z) * 2 / (Math.sqrt((Fin_x - Int_x) ** 2 + (Fin_z - Int_z) ** 2))
+		Car2.position.x += (Fin_x - Int_x) * 5 / (Math.sqrt((Fin_x - Int_x) ** 2 + (Fin_z - Int_z) ** 2))
+		Car2.position.z += (Fin_z - Int_z) * 5 / (Math.sqrt((Fin_x - Int_x) ** 2 + (Fin_z - Int_z) ** 2))
 	}
 	else {
 		count++
@@ -789,9 +789,21 @@ function animate() {
 
 
 	document.querySelector("#paragraph").innerHTML = ("Time: " + Math.floor(Clock.getElapsedTime()) +
-		" Health: " + Health + " Fuel: " + Fuel + " Score: " + Score + "Distance To Next" + Math.floor(distanceToNextFuelCan())/100)
+		" Health: " + Health + " Fuel: " + Fuel + " Score: " + Score + "Distance To Next" + Math.floor(distanceToNextFuelCan()) / 100)
 
 	// Fuel = Fuel - 0.05
+
+	if (count_1 == points.length - 1 && count_2 < points_2.length) {
+		Winner = 2;
+	}
+
+	if (count_1 == points.length - 1 && count_2 < points_2.length) {
+		Winner = 2;
+	}
+
+	if (count == points.length - 1 && count_1 == points_2.length - 1) {
+		Winner = 1;
+	}
 
 	if (Fuel < 0 || Health < 0) {
 		console.log("Game Over")
@@ -800,19 +812,19 @@ function animate() {
 		document.getElementById("paragraph").remove()
 	}
 
-	if(Winner == 1){
+	if (Winner == 1) {
 		document.querySelector(".Main").remove()
 		document.body.style.backgroundImage = "url('http://localhost:8080/src/assets/1stRank.jpg')"
 		document.getElementById("paragraph").remove()
 	}
 
-	if(Winner == 2){
+	if (Winner == 2) {
 		document.querySelector(".Main").remove()
 		document.body.style.backgroundImage = "url('http://localhost:8080/src/assets/2ndRank.jpg')"
 		document.getElementById("paragraph").remove()
 	}
 
-	if(Winner == 3){
+	if (Winner == 3) {
 		document.querySelector(".Main").remove()
 		document.body.style.backgroundImage = "url('http://localhost:8080/src/assets/3rdRank.jpg')"
 		document.getElementById("paragraph").remove()
